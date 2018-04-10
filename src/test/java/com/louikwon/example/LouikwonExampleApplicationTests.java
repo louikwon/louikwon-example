@@ -41,7 +41,7 @@ public class LouikwonExampleApplicationTests {
 
 	@Test
 	public void predicate_실행예제() {
-		List<String> originalList = Arrays.asList("liverpool", "manchester united", "mancherster city");
+		List<String> originalList = Arrays.asList("liverpool", "manchester united", "manchester city");
 		//체크할 조건으로 함수형 인터페이스 인스턴스 생성.
 		Predicate<String> manContainPredicate = (String s) -> s.contains("man");
 		List<String> manContainList = FunctionalInterfaceExample.filter(originalList, manContainPredicate);
