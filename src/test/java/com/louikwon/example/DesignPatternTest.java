@@ -1,6 +1,6 @@
 package com.louikwon.example;
 
-import com.louikwon.example.java8.StrategyPattern;
+import com.louikwon.example.java8.example.StrategyPattern;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;

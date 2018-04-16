@@ -1,4 +1,4 @@
-package com.louikwon.example.java8;
+package com.louikwon.example.java8.example;
 
 public class StrategyPattern {
     public interface InputValidatation {

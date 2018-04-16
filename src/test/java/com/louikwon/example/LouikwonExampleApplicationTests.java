@@ -1,7 +1,9 @@
 package com.louikwon.example;
 
-import com.louikwon.example.java8.ExecuteAroundPattern;
-import com.louikwon.example.java8.FunctionalInterfaceExample;
+import com.louikwon.example.java8.dto.Car;
+import com.louikwon.example.java8.example.ExecuteAroundPattern;
+import com.louikwon.example.java8.example.FunctionalInterfaceExample;
+import com.louikwon.example.java8.example.LamdaChain;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,8 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 @RunWith(SpringRunner.class)
@@ -72,5 +76,15 @@ public class LouikwonExampleApplicationTests {
 		List<Integer> checkList = Arrays.asList(7, 10, 11);
 
 		Assert.assertEquals(checkList, resultList);
+	}
+
+	@Test
+	public void comparing_조합예제() {
+		LamdaChain lamdaChain = new LamdaChain();
+		Optional<List<Car>> optionalCarList = lamdaChain.comparatorChain();
+		if (lamdaChain.comparatorChain().isPresent()) {
+			List<Car> carList = optionalCarList.orElse(new ArrayList<>());
+			Assert.assertEquals(Integer.valueOf(2014) , carList.get(1).getYear());
+		}
 	}
 }
