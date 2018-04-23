@@ -77,14 +77,4 @@ public class LouikwonExampleApplicationTests {
 
 		Assert.assertEquals(checkList, resultList);
 	}
-
-	@Test
-	public void comparing_조합예제() {
-		LamdaChain lamdaChain = new LamdaChain();
-		Optional<List<Car>> optionalCarList = lamdaChain.comparatorChain();
-		if (lamdaChain.comparatorChain().isPresent()) {
-			List<Car> carList = optionalCarList.orElse(new ArrayList<>());
-			Assert.assertEquals(Integer.valueOf(2014) , carList.get(1).getYear());
-		}
-	}
 }

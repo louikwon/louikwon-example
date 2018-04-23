@@ -9,4 +9,5 @@ public class Car {
     private String name;
     private Integer price;
     private Integer year;
+    private String color;
 }
