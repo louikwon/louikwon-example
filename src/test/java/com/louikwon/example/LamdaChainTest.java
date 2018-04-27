@@ -2,6 +2,7 @@ package com.louikwon.example;
 
 import com.louikwon.example.java8.dto.Car;
 import com.louikwon.example.java8.example.LamdaChain;
+import com.louikwon.example.java8.example.OptionalExample;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.constraints.AssertTrue;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,31 +20,7 @@ import java.util.Optional;
 @SpringBootTest
 @Slf4j
 public class LamdaChainTest {
-    @Test
-    public void comparing_조합예제() {
-        List<Car> carList = new ArrayList();
-        carList.add(
-                Car.builder().name("BMWX6").price(1000).year(2015).build()
-        );
-        carList.add(
-                Car.builder().name("K7").price(600).year(2017).build()
-        );
-        carList.add(
-                Car.builder().name("MINI").price(600).year(2014).build()
-        );
-        carList.add(
-                Car.builder().name("CRUZE").price(300).year(2013).build()
-        );
 
-
-        LamdaChain lamdaChain = new LamdaChain();
-
-        Optional<List<Car>> optionalCarList = lamdaChain.comparatorChain(carList);
-        if (optionalCarList.isPresent()) {
-            List<Car> carListCheckList = optionalCarList.orElse(new ArrayList<>());
-            Assert.assertEquals(Integer.valueOf(2014) , carListCheckList.get(1).getYear());
-        }
-    }
 
     @Test
     public void predicate_조합예제() {
@@ -54,15 +32,28 @@ public class LamdaChainTest {
 
         Car car2 = Car.builder()
                 .name("K5")
-                .color("blue")
+                .color("red")
                 .price(4000)
                 .build();
-
         LamdaChain lamdaChain = new LamdaChain();
 
-        Assert.assertEquals(true, lamdaChain.PredicateChain(car1));
+        Assert.assertEquals(true, lamdaChain.predicateChain(car1));
 
-        Assert.assertEquals(true, lamdaChain.PredicateChain(car2));
+        Assert.assertEquals(false, lamdaChain.predicateChain(car2));
 
+    }
+
+    @Test
+    public void Function_조합예제() {
+        LamdaChain lamdaChain = new LamdaChain();
+
+        Assert.assertEquals(400, lamdaChain.functionChain(10));
+    }
+
+
+    @Test
+    public void OptionalTest() {
+        OptionalExample optionalExample = new OptionalExample();
+        optionalExample.createOptional();
     }
 }

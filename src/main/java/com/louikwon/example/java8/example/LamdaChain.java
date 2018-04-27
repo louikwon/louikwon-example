@@ -5,6 +5,7 @@ import com.louikwon.example.java8.dto.Car;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static java.util.Comparator.comparing;
@@ -26,16 +27,26 @@ public class LamdaChain {
         return Optional.ofNullable(carList);
     }
 
-   public boolean PredicateChain (Car car) {
+   public boolean predicateChain (Car car) {
         Predicate<Car> blueCar = (c -> "blue".equals(c.getColor()));
 
-        //a.and(b).or(c) == (a || b) && c
+        //a.or(b).and(c) == (a || b) && c
         Predicate<Car> notBlueCarAndNameIsK7 = blueCar
                 .or(c -> "K7".equals(c.getName()))
                 .and(c -> c.getPrice() > 3000);
 
 
        return notBlueCarAndNameIsK7.test(car);
+   }
+
+   public int functionChain(Integer input) {
+       Function<Integer, Integer> f = x -> x + 10;
+       Function<Integer, Integer> g = x -> x * 20;
+
+       //f를 실행한 반환값으로 g를 실행.
+       Function<Integer, Integer> h = f.andThen(g);
+
+       return h.apply(input);
    }
 
 }
